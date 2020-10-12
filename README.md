@@ -10,6 +10,7 @@ Features:
 
 Issues:
 -> No system to check for ID uniqueness so multiple products with same ID can exist.
+    => Solution- Make a class to keep track of products and provide various operatins on products.
 
 Bugs:
--> Not known currently.
+-> Unknown currently.
