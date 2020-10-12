@@ -10,3 +10,6 @@ Features:
 
 Issues:
 -> No system to check for ID uniqueness so multiple products with same ID can exist.
+
+Bugs:
+-> Not known currently.
