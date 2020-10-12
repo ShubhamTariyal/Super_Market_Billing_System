@@ -23,8 +23,7 @@ using namespace std;
 #endif
 
 //****************************************************************
-// function to remove a line after showing a message from
-// input stream
+// function to check if file is empty
 //****************************************************************
 
 bool isempty(fstream& f)
@@ -82,8 +81,8 @@ public:
     void get_detail();
     void show_detail();
 
-    bool read(std::istream& f);
-    void write(std::ostream& f);
+    bool read(std::fstream& f);
+    void write(std::fstream& f);
 
 };
 
@@ -109,7 +108,7 @@ void Product::show_detail()
     cout << "\nDiscount : " << discount;
 }
 
-void Product::write(std::ostream& f)
+void Product::write(std::fstream& f)
 {
     size_t size;
 
@@ -123,13 +122,13 @@ void Product::write(std::ostream& f)
     f.write( (char*)&discount, sizeof(float) );
     //f.write( (char*)&tax, sizeof(float) );
 
-    size = name.size();
+    size = sizeof(char) * name.size();
     f.write( (char*)&size, sizeof(size_t) );
     f.write( (char*)name.c_str(), size );
 
 }
 
-bool Product::read(std::istream& f)
+bool Product::read(std::fstream& f)
 {
     size_t size;
     char *data;
@@ -458,7 +457,7 @@ void show_order(int order_ID[], int quantity[], int c)
     clr_scr();
     float amt, damt, total=0;
     cout << "\n\n********************************INVOICE************************\n";
-    cout << "\nPr ID\tPr Name\tQuantity \tPrice \tAmount \tAmount after discount\n";
+    cout << "\nPr ID\tPr Name\tQuantity \tPrice \tAmount \tDiscounted Amount\n";
     for(int x = 0; x <= c; ++x)
     {
         fp.open("Shop.dat",ios::in);
